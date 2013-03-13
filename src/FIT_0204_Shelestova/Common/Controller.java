@@ -2,7 +2,6 @@ package FIT_0204_Shelestova.Common;
 
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface Controller {
@@ -16,4 +15,31 @@ public interface Controller {
     public void loadPropertiesFromFile(File fileName) throws IOException;
     public void storePropertiesToFile(File fileName) throws IOException;
     public void fillMemory(int[] memory);
+    public Integer getX1();
+
+    public void setX1(Integer x1);
+
+    public Integer getY1();
+
+    public void setY1(Integer y1);
+    public Integer getR1();
+
+    public void setR1(Integer r1);
+
+    public Integer getX2();
+
+    public void setX2(Integer x2);
+
+    public Integer getY2();
+
+    public void setY2(Integer y2);
+
+    public Integer getR2();
+
+
+    public void setR2(Integer r2);
+
+    public Integer getN();
+
+    public void setN(Integer n);
 }

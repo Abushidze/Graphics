@@ -9,49 +9,106 @@ public class PlotterController extends BaseController{
         super.setModel(model);
     }
 
+    public Integer getX1() {
+        return model.getX1();
+    }
+
+    public void setX1(Integer x1) {
+        model.setX1(x1);
+    }
+
+    public Integer getY1() {
+        return model.getY1();
+    }
+
+    public void setY1(Integer y1) {
+        model.setY1(y1);
+    }
+
+    public Integer getR1() {
+        return model.getR1();
+    }
+
+    public void setR1(Integer r1) {
+        model.setR1(r1);
+    }
+
+    public Integer getX2() {
+        return model.getX2();
+    }
+
+    public void setX2(Integer x2) {
+        model.setX2(x2);
+    }
+
+    public Integer getY2() {
+        return model.getY2();
+    }
+
+    public void setY2(Integer y2) {
+        model.setY2(y2);
+    }
+
+    public Integer getR2() {
+        return model.getR2();
+    }
+
+    public void setR2(Integer r2) {
+        model.setR2(r2);
+    }
+
+    public Integer getN() {
+        return model.getN();
+    }
+
+    public void setN(Integer n) {
+        model.setN(n);
+    }
+
+    public int getXnull(){
+        return model.getXnull();
+    }
+    public int getYnull(){
+        return model.getYnull();
+    }
     public void fillMemory(int[] bits ){
         prepareCanvas(bits);
-        int[] circle = createCircle(model.getR1());
+        drawCircle(bits, getX1(),getY1(), getR1());
+        drawCircle(bits, getX2(), getY2(), getR2());
+    }
 
-        int xDimSize = model.getPanelWidth();
-        int circleXStart = 0;
-        int circleYStart = 0;
-        int circleXStop = 2 * model.getR1() + 1;
-        int circleYStop = 2 * model.getR1() + 1;
+    private void drawCircle(int[] bits, int x, int y, int r) {
+        int d = 2*r + 1;
+        int pw = getPanelWidth();
+        int ph = getPanelHeight();
 
-        int xStart = model.getXnull() + model.getX1() - model.getR1();
-        int yStart = model.getYnull() - model.getY1() + model.getR1();
+        int[] circle = createCircle(r);
 
-        int	xStop = xStart + model.getR1() * 2 + 1;
-        int yStop = yStart - model.getR1() * 2 - 1;
+        int xStart = getXnull() + x - r;
+        int yStart = getYnull() - y - r;
 
-        if (xStart < - model.getR1() * 2){
-            xStart = 0;
-            xStop = 0;
-        }
+        int xStop = xStart + d;
+        int yStop = yStart + d;
 
-        if (yStart > model.getPanelHeight() - 1){
-            yStart = model.getPanelHeight() - 1;
+        int dx = 0;
+        int dy = 0;
 
-        }
+        for(int i = 0; i < d; i++){
+            if (i + xStart > xStop || i + xStart > pw) break; //TODO: убрать такой бред
+            if (xStart < 0) continue;
+            for(int j = 0; j < d; j++ ){
+                if (j + yStart > yStop || yStop > ph - 1) break;           //TODO: убрать такой бред
+                if (yStart < 0) continue;
 
-        if (xStop > model.getPanelWidth()){
-            xStop = model.getPanelWidth();
-        }
-
-        if (yStop < 0){
-            yStop = 0;
-        }
-        for (int i = xStart, ci = 0; i < xStop; i++, ci++){
-            for(int j = yStart, cj = 2*model.getR1(); j > yStop; j--, cj--){
-                bits[j* xDimSize + i] = circle[model.getR1()*2 * cj + ci];
+                if( circle[j*d + i] == drawColor){
+                    bits[(i + xStart) + (j+ yStart)*pw] = circle[j*d + i];
+                }
             }
         }
-
     }
 
     private int[] createCircle(int r){
-        int d = 2*r +1;
+        int d = 2*r + 1;
         int[] circle = new int[d*d];
         prepareCanvas(circle);
 
@@ -91,7 +148,7 @@ public class PlotterController extends BaseController{
         paintXY(bits, r + y, r + x, r);
     }
     private void paintXY(int[] bits, int x, int y, int r){
-        bits[y * 2*r + x] = drawColor;
+        bits[y * (2*r + 1) + x] = drawColor;
     }
 
 

@@ -77,7 +77,29 @@ public class PlotterGUI extends CommonGUI{
         setMinimumSize(frameDim);
 
     }
-    public void widgetChanged(JComponent component){
-        super.widgetChanged(component);
+    public void widgetChanged(JComponent widget){
+        super.widgetChanged(widget);
+        if (widget == x1ControlGroup){
+            controller.setX1(x1ControlGroup.getCurrentValue());
+        }
+        if (widget == y1ControlGroup){
+            controller.setY1(y1ControlGroup.getCurrentValue());
+        }
+        if (widget == r1ControlGroup){
+            controller.setR1(r1ControlGroup.getCurrentValue());
+        }
+        if (widget == x2ControlGroup){
+            controller.setX2(x2ControlGroup.getCurrentValue());
+        }
+        if (widget == y2ControlGroup){
+            controller.setY2(y2ControlGroup.getCurrentValue());
+        }
+        if (widget == r2ControlGroup){
+            controller.setR2(r2ControlGroup.getCurrentValue());
+        }
+        if (widget == nControlGroup){
+            controller.setN(nControlGroup.getCurrentValue());
+        }
+        canvas.repaint();
     }
 }
