@@ -1,8 +1,8 @@
 package FIT_0204_Shelestova.Common;
 
-import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class Canvas extends MyPanel{
@@ -12,10 +12,37 @@ public class Canvas extends MyPanel{
     private TexturePaint texture;
     private Rectangle rect;
     private int[] bits;
+    private MouseEvent event;
+    private int currentX;
+    private int currentY;
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
 
     public Canvas(CommonGUI gui, Controller controller){
         super(gui);
         this.controller = controller;
+
+        // drag-n-drop
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                event = e;
+                changed();
+            }
+        });
+
+        addMouseMotionListener(new MouseAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                event = e;
+                changed();
+            }
+        });
+
     }
 
     @Override
@@ -65,5 +92,10 @@ public class Canvas extends MyPanel{
         g2d.setPaint(texture);
         g2d.fillRect(0,0, width , height);
 
+    }
+    public void changed(){
+        currentX = event.getX();
+        currentY = event.getY();
+        super.changed();
     }
 }

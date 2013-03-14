@@ -197,4 +197,9 @@ public class RectangleController implements Controller {
     public void setN(Integer n) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    @Override
+    public void moveFigure(int x, int y) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

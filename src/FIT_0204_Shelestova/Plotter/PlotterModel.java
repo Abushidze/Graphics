@@ -87,4 +87,5 @@ public class PlotterModel extends Model{
     public Integer goalFunction(int x, int y){
         return funcF(x,y) + funcR(x, y);
     }
+
 }

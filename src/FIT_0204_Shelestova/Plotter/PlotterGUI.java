@@ -100,6 +100,9 @@ public class PlotterGUI extends CommonGUI{
         if (widget == nControlGroup){
             controller.setN(nControlGroup.getCurrentValue());
         }
+        if (widget == canvas){
+            controller.moveFigure(canvas.getCurrentX(), canvas.getCurrentY());
+        }
         canvas.repaint();
     }
 }

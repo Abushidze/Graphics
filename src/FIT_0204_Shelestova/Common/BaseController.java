@@ -8,6 +8,7 @@ public abstract class BaseController implements Controller {
     private Model model;
     protected int backgroundColor = (255 << 16) | (255 << 8) | 240;
     protected int drawColor = (140 << 16) | (140 << 8) | 140;
+    protected int axisColor = (200 << 16) | (200 << 8) | 200;
 
     protected void setModel(Model model){
         this.model = model;
