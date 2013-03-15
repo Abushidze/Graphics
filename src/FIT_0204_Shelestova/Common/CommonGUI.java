@@ -156,4 +156,6 @@ public abstract class CommonGUI extends JFrame{
     public void widgetChanged(JComponent widget){
 
     }
+
+
 }

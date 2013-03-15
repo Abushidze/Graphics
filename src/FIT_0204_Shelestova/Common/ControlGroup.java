@@ -9,13 +9,14 @@ import java.awt.event.KeyEvent;
 import java.util.Hashtable;
 //TODO: поправить слушатели на спиннере 98сомлв987
 public class ControlGroup extends MyPanel {
+    private Controller controller;
     private JLabel label;
     private JSlider slider;
     private JSpinner spinner;
     private int step = 1;
     private int min;
     private int max;
-    private int currentValue;
+    protected int currentValue;
 
     public int getCurrentValue() {
         return currentValue;
@@ -103,7 +104,13 @@ public class ControlGroup extends MyPanel {
                             textField.setValue(slider.getValue());
                         }
                         else{
-                            changed();
+                            if(canChange(intInput)) {
+                                slider.setValue(intInput);
+                                changed();
+                            }
+                            else {
+                                textField.setValue(slider.getValue());
+                            }
                         }
                     }catch (NumberFormatException ex){
                         showWarning();
@@ -120,8 +127,13 @@ public class ControlGroup extends MyPanel {
                 JSpinner spinner = (JSpinner)(e.getSource());
                 SpinnerNumberModel model = (SpinnerNumberModel)(spinner.getModel());
                 int value = model.getNumber().intValue();
-                slider.setValue(value);
-                changed();
+                if(canChange(value)){
+                    slider.setValue(value);
+                    changed();
+                }
+                else {
+                    spinner.setValue(slider.getValue());
+                }
             }
 
         });
@@ -156,8 +168,11 @@ public class ControlGroup extends MyPanel {
             public void stateChanged(ChangeEvent e) {
                 // синхронизируем состояние спиннера и слайдера.
                 JSlider slider = (JSlider)e.getSource();
-                spinner.setValue(slider.getValue());
-                changed();
+                int value = slider.getValue();
+                if(canChange(value)){
+                    spinner.setValue(value);
+                    changed();
+                }
             }
         });
     }
@@ -165,7 +180,10 @@ public class ControlGroup extends MyPanel {
     public void changed(){
         currentValue = slider.getValue();
         super.changed();
+    }
+    protected boolean canChange(int value){
 
+        return true;
     }
 
 }
