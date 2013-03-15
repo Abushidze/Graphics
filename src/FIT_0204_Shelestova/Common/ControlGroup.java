@@ -4,7 +4,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Hashtable;
 //TODO: поправить слушатели на спиннере 98сомлв987
 public class ControlGroup extends MyPanel {
@@ -54,7 +55,36 @@ public class ControlGroup extends MyPanel {
 
     private void createSpinner(int init, int min, int max) {
         spinner = new JSpinner(new SpinnerNumberModel(init, min, max, step));
+        addSpinnerListeners();
+    }
 
+    private void createSlider(Integer min, Integer max, Integer init) {
+        slider = new JSlider(JSlider.HORIZONTAL, min,max, init);
+        slider.setMajorTickSpacing(0);
+        slider.setMinorTickSpacing(step * 100);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+
+        Hashtable labelTable = new Hashtable();
+        labelTable.put( new Integer( min), new JLabel(min.toString()) );
+        labelTable.put( new Integer( max ), new JLabel(max.toString()) );
+        slider.setLabelTable( labelTable );
+
+        slider.setPaintLabels(true);
+
+        addSliderListener();
+    }
+
+    public int getHeight(){
+        return gui.getFullHeight(label) +
+                gui.getFullHeight(spinner) +
+                gui.getFullHeight(slider);
+
+    }
+
+
+
+    protected void addSpinnerListeners(){
         final JFormattedTextField textField = getTextField( spinner );
         final int minValue = this.min;
         final int maxValue = this.max;
@@ -63,8 +93,11 @@ public class ControlGroup extends MyPanel {
             public void keyReleased( final KeyEvent e ) {
                 if ( e.getKeyCode() == KeyEvent.VK_ENTER ) {
                     String input = textField.getText();
+
                     try{
-                        Integer intInput = new Integer(input);
+                        //     System.out.println(input);
+                        Integer intInput = Integer.parseInt(input);
+                        //     System.out.println(input + " : " +intInput);
                         if(intInput > maxValue || intInput < minValue){
                             showWarning();
                             textField.setValue(slider.getValue());
@@ -94,6 +127,7 @@ public class ControlGroup extends MyPanel {
         });
 
     }
+
     private void showWarning(){
         JOptionPane.showMessageDialog(this,
                 "Bad value. Input number in [" +min +", "+ max + "]",
@@ -116,21 +150,7 @@ public class ControlGroup extends MyPanel {
             return null;
         }
     }
-
-    private void createSlider(Integer min, Integer max, Integer init) {
-        slider = new JSlider(JSlider.HORIZONTAL, min,max, init);
-        slider.setMajorTickSpacing(0);
-        slider.setMinorTickSpacing(step * 100);
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
-
-        Hashtable labelTable = new Hashtable();
-        labelTable.put( new Integer( min), new JLabel(min.toString()) );
-        labelTable.put( new Integer( max ), new JLabel(max.toString()) );
-        slider.setLabelTable( labelTable );
-
-        slider.setPaintLabels(true);
-
+    private  void  addSliderListener(){
         slider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -141,14 +161,6 @@ public class ControlGroup extends MyPanel {
             }
         });
     }
-
-    public int getHeight(){
-        return gui.getFullHeight(label) +
-                gui.getFullHeight(spinner) +
-                gui.getFullHeight(slider);
-
-    }
-
     @Override
     public void changed(){
         currentValue = slider.getValue();

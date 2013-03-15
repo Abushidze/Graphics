@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PlotterGUI extends CommonGUI{
-    private ControlGroup x1ControlGroup;
-    private ControlGroup y1ControlGroup;
+    private X1ControlGroup x1ControlGroup;
+    private Y1ControlGroup y1ControlGroup;
     private ControlGroup r1ControlGroup;
 
-    private ControlGroup x2ControlGroup;
-    private ControlGroup y2ControlGroup;
+    private X2ControlGroup x2ControlGroup;
+    private Y2ControlGroup y2ControlGroup;
     private ControlGroup r2ControlGroup;
 
     private ControlGroup nControlGroup;
@@ -24,12 +24,12 @@ public class PlotterGUI extends CommonGUI{
     protected void createWidgets(){
         super.createWidgets();
 
-        x1ControlGroup = new ControlGroup(this, "x1", -1000, 1000, 0);
-        y1ControlGroup = new ControlGroup(this, "y1", -1000, 1000, 0);
+        x1ControlGroup = new X1ControlGroup(this, "x1", -1000, 1000, 0);
+        y1ControlGroup = new Y1ControlGroup(this, "y1", -1000, 1000, 0);
         r1ControlGroup = new ControlGroup(this, "r1", -1000, 1000, 10);
 
-        x2ControlGroup = new ControlGroup(this, "x2", -1000, 1000, 0);
-        y2ControlGroup = new ControlGroup(this, "y2", -1000, 1000, 0);
+        x2ControlGroup = new X2ControlGroup(this, "x2", -1000, 1000, 0);
+        y2ControlGroup = new Y2ControlGroup(this, "y2", -1000, 1000, 0);
         r2ControlGroup = new ControlGroup(this, "r2", -1000, 1000, 5);
 
         nControlGroup = new ControlGroup(this, "n", 2, 10, 2);

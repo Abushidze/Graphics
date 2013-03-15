@@ -4,6 +4,8 @@ import FIT_0204_Shelestova.Common.BaseController;
 
 public class PlotterController extends BaseController{
     private PlotterModel model = new PlotterModel();
+    private Circle circle1;
+    private Circle circle2;
 
     public PlotterController(){
         super.setModel(model);
@@ -86,8 +88,6 @@ public class PlotterController extends BaseController{
 
         int[] circle = createCircle(r);
 
-        //TODO: подумать о функции, отражающей окружность в массив,
-        // т.к. нам необходимо еще и центры отбражать в окружности. для захвата.
         int xStart = getXnull() + x - r, xCircleStart = 0;
         int yStart = getYnull() - y - r, yCircleStart = 0;
 
@@ -154,7 +154,7 @@ public class PlotterController extends BaseController{
         drawCenter(circle, r);
         return circle;
     }
-    private void drawCenter(int[] circle, int r){
+    private void drawCenter(int[] circle, int r){ //TODO: change
         int d = 2*r + 1;
         circle[(r*d) + r] = drawColor;
     }
@@ -204,6 +204,38 @@ public class PlotterController extends BaseController{
             setX2(x);
             setY2(y);
         }
+    }
+
+    @Override
+    public boolean canChangeX2(int x2) {
+        if (getX1() + getR1() > x2 || getX1() - getR1() < x2){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean canChangeY2(int y2) {
+        if (getY1() + getR1() > y2 || getY1() - getY2() < y2){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean canChangeX1(int x1) {
+        if (getX2() + getR2() < x1 || getX2() - getR2() > x1){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean canChangeY1(int y1) {
+        if (getY2() + getR2() < y1 || getY2() - getR2() < y1){
+            return false;
+        }
+        return true;
     }
 
 }

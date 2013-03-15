@@ -202,4 +202,24 @@ public class RectangleController implements Controller {
     public void moveFigure(int x, int y) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    @Override
+    public boolean canChangeX2(int x2) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean canChangeY2(int y2) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean canChangeX1(int x1) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean canChangeY1(int y1) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
