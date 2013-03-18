@@ -79,11 +79,23 @@ public class PlotterController extends BaseController{
         return model.getYnull();
     }
     public void fillMemory(int[] bits ){
-        //TODO: подумать о корректности модели
         prepareCanvas(bits);
         drawAxis(bits);
         drawCircle(bits, circle1.getCircleBits(), getX1(),getY1(), getR1());
         drawCircle(bits, circle2.getCircleBits(), getX2(), getY2(), getR2());
+        drawFunction(bits);
+    }
+
+    private void drawFunction(int[] bits){
+        // seek first poit
+        Point.setxNull(getXnull());
+        Point.setyNull(getYnull());
+        Point.setModel(model);
+
+
+    }
+    private  Point xBinarySearch(Point left, Point right){
+
     }
 
     private void drawCircle(int[] bits, int[] circle, int x, int y, int r) {
