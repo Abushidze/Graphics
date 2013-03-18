@@ -2,7 +2,7 @@ package FIT_0204_Shelestova.Plotter;
 
 import FIT_0204_Shelestova.Common.Model;
 
-import static java.lang.StrictMath.pow;
+import static java.lang.Math.pow;
 
 public class PlotterModel extends Model{
     private Integer x1 = 0 ;
@@ -13,7 +13,7 @@ public class PlotterModel extends Model{
     private Integer y2 = 0;
     private Integer r2 = 5;
 
-    private Integer n = 0;
+    private Integer n = 2;
 
 
     public Integer getX1() {
@@ -71,21 +71,23 @@ public class PlotterModel extends Model{
     public void setN(Integer n) {
         this.n = n;
     }
-    public Integer funcF(int x, int y){
-        return (x*x + y*y - r1*r1);
-    }
-    public Integer funcQ(int x, int y){
-        return (x*x + y*y - r2*r2);
-    }
 
-    public Integer funcR(int x, int y){
-        int q = funcQ(x, y);
-        if (q < 0) return 0;
-        int result = (int)pow(q, n);
-        return result;
+    public double funcF(int x, int y){
+        return pow(x,2) + pow(y,2) - pow(r1,2);
     }
-    public Integer goalFunction(int x, int y){
-        return funcF(x,y) + funcR(x, y);
+    public double funcQ(int x, int y){
+        return pow(x,2) + pow(y,2) - pow(r2,2);
     }
-
+    public double funcR(int x, int y){
+        double  q = funcQ(x, y);
+        if (q >= 0){
+            return pow(q, n);
+        }
+        else {
+            return 0;
+        }
+    }
+    public double func(int x, int y){
+        return funcF(x, y) + funcR(x, y);
+    }
 }

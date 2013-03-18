@@ -87,15 +87,8 @@ public class PlotterController extends BaseController{
     }
 
     private void drawFunction(int[] bits){
-        // seek first poit
-        Point.setxNull(getXnull());
-        Point.setyNull(getYnull());
-        Point.setModel(model);
-
-
-    }
-    private  Point xBinarySearch(Point left, Point right){
-
+        FunctionBuilder fb = new FunctionBuilder(model, bits);
+        bits = fb.getBits();
     }
 
     private void drawCircle(int[] bits, int[] circle, int x, int y, int r) {
