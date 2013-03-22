@@ -139,7 +139,8 @@ public class FunctionBuilder {
         Point prePoint = startPoint;
 
         Point[] points = new Point[8];
-        Point bigPoint = new Point(model.getX1(), model.getY1()); // здесь гарантированно большое абсолютное значение
+        Point bigPoint = new Point(model.getX1(), model.getY1());
+        bigPoint.dF = 10000;// здесь гарантированно большое абсолютное значение
         Point nextPoint = bigPoint;
 
         do {
@@ -163,7 +164,7 @@ public class FunctionBuilder {
                     }
                 }
             }
-
+            //if (nextPoint.equals(bigPoint)) break; //TODO: разобраться
             nextPoint.draw();
             drawedPoints.add(nextPoint);
             prePoint = nextPoint;
