@@ -2,17 +2,17 @@ package FIT_0204_Shelestova.Common;
 
 
 
-import FIT_0204_Shelestova.Rectangle.RectangleController;
-
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.InvalidPropertiesFormatException;
 
 public class CommandLineMode {
     private Controller controller;
-    public CommandLineMode(String propertyFileName, RectangleController controller){
+    public CommandLineMode(String propertyFileName, Controller controller){
         this.controller = this.controller;
 
         try {

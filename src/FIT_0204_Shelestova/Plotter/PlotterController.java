@@ -3,6 +3,12 @@ package FIT_0204_Shelestova.Plotter;
 import FIT_0204_Shelestova.Common.BaseController;
 import FIT_0204_Shelestova.Common.GUIStandarts;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
@@ -181,6 +187,68 @@ public class PlotterController extends BaseController{
         else {
             return false;
         }
+    }
+    private boolean canSetXY(int x1, int y1, int x2, int y2, int r1, int r2){
+        double d = pow(x2 - x1, 2) + pow(y2 - y1, 2);
+        if (d <= pow(r1, 2)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void loadPropertiesFromFile(File fileName) throws IOException {
+        FileInputStream in = new FileInputStream(fileName);
+        Properties properties = new Properties();
+        properties.loadFromXML(in);
+
+        int x1 =(new Integer(properties.getProperty("x1")));
+        int y1 =(new Integer(properties.getProperty("y1")));
+        int r1 =(new Integer(properties.getProperty("r1")));
+
+        int x2 =(new Integer(properties.getProperty("x2")));
+        int y2 =(new Integer(properties.getProperty("y2")));
+        int r2 =(new Integer(properties.getProperty("r2")));
+
+        int n =(new Integer(properties.getProperty("n")));
+
+        if (canSetXY(x1, y1, x2, y2, r1, r2)){
+            setX1(x1);
+            setX2(x2);
+            setY1(y1);
+            setY2(y2);
+            setR1(r1);
+            setR2(r2);
+            setN(n);
+        }
+
+        try{
+            setPanelWidth(new Integer(properties.getProperty("PanelWidth")));
+            setPanelHeight(new Integer(properties.getProperty("PanelHeight")));
+        } catch (Exception e){
+
+        }
+        in.close();
+    }
+
+
+    public void storePropertiesToFile(File fileName) throws IOException {
+        FileOutputStream out = new FileOutputStream(fileName);
+        Properties properties = new Properties();
+
+        properties.setProperty("x1", model.getX1().toString());
+        properties.setProperty("x2", model.getX2().toString());
+        properties.setProperty("y1", model.getY1().toString());
+        properties.setProperty("y2", model.getY2().toString());
+        properties.setProperty("r1", model.getR1().toString());
+        properties.setProperty("r2", model.getR2().toString());
+        properties.setProperty("n", model.getN().toString());
+        properties.setProperty("PanelWidth", model.getPanelWidth().toString());
+        properties.setProperty("PanelHeight", model.getPanelHeight().toString());
+
+        properties.storeToXML(out, null);
+        out.close();
     }
 
 }

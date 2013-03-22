@@ -65,4 +65,79 @@ public abstract class BaseController implements Controller {
             bits[i] = GUIStandarts.backgroundColor;
         }
     }
+    @Override
+    public Integer getX1() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setX1(Integer x1) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Integer getY1() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setY1(Integer y1) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Integer getR1() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setR1(Integer r1) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Integer getX2() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setX2(Integer x2) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Integer getY2() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setY2(Integer y2) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Integer getR2() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setR2(Integer r2) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Integer getN() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void setN(Integer n) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void moveFigure(int x, int y) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
 }
