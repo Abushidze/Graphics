@@ -3,6 +3,9 @@ package FIT_0204_Shelestova.Plotter;
 import FIT_0204_Shelestova.Common.BaseController;
 import FIT_0204_Shelestova.Common.GUIStandarts;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.pow;
+
 public class PlotterController extends BaseController{
     private PlotterModel model = new PlotterModel();
     private Circle circle1;
@@ -150,50 +153,34 @@ public class PlotterController extends BaseController{
 
     @Override
     public void moveFigure(int x, int y) {
-        //TODO: сделать захват не 1 писксель, а 3. сейчас захватить невозможно.
         x -= getXnull();
         y = getYnull() - y;
+        int dx1 = getX1() - x;
+        int dx2 = getX2() - x;
+        int dy1 = getY1() - y;
+        int dy2 = getY2() - y;
 
-        if ( x == getX1() && y == getY1()){
+        if ( abs(dx1) < 4 && abs(dy1) < 4){
+            if(canSetXY(x, y, getX2(), getY2())){
             setX1(x);
             setY1(y);
+            }
         }
-        if( x == getX2() && y == getY2()){
+        if( abs(dx2) < 4 && abs(dy2) < 4){
+            if(canSetXY(getX1(), getY1(), x, y)) {
             setX2(x);
             setY2(y);
+            }
         }
     }
-
-    @Override
-    public boolean canChangeX2(int x2) {
-        if (getX1() + getR1() > x2 || getX1() - getR1() < x2){
+    private boolean canSetXY(int x1, int y1, int x2, int y2){
+        double d = pow(x2 - x1, 2) + pow(y2 - y1, 2);
+        if (d <= pow(getR1(), 2)){
+            return true;
+        }
+        else {
             return false;
         }
-        return true;
-    }
-
-    @Override
-    public boolean canChangeY2(int y2) {
-        if (getY1() + getR1() > y2 || getY1() - getY2() < y2){
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean canChangeX1(int x1) {
-        if (getX2() + getR2() < x1 || getX2() - getR2() > x1){
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean canChangeY1(int y1) {
-        if (getY2() + getR2() < y1 || getY2() - getR2() < y1){
-            return false;
-        }
-        return true;
     }
 
 }

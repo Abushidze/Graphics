@@ -75,7 +75,7 @@ public class FunctionBuilder {
             firstPoint = ySearchFirstPoint(new Point(model.getX1(), -yNull));
         }
         else if(model.getPanelWidth() > model.getPanelHeight()){
-            if (model.getY1() < -yNull){
+            if (model.getY1() <= -yNull){
                 firstPoint = xSearchFirstPoint(new Point(-xNull, -yNull));
             }
             else{
@@ -83,7 +83,7 @@ public class FunctionBuilder {
             }
         }
         else if (model.getPanelHeight() > model.getPanelWidth()){
-            if (model.getX1() < -yNull){
+            if (model.getX1() <= -xNull){
                 firstPoint = ySearchFirstPoint(new Point(-xNull, -yNull));
             }
             else{
@@ -140,7 +140,7 @@ public class FunctionBuilder {
 
         Point[] points = new Point[8];
         Point bigPoint = new Point(model.getX1(), model.getY1()); // здесь гарантированно большое абсолютное значение
-        Point nextPoint;
+        Point nextPoint = bigPoint;
 
         do {
             nextPoint = bigPoint;

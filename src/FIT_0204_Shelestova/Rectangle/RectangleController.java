@@ -203,7 +203,7 @@ public class RectangleController implements Controller {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
+   /* @Override
     public boolean canChangeX2(int x2) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -221,5 +221,5 @@ public class RectangleController implements Controller {
     @Override
     public boolean canChangeY1(int y1) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+    }*/
 }

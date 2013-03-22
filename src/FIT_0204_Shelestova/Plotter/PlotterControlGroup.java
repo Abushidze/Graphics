@@ -13,8 +13,7 @@ public class PlotterControlGroup extends ControlGroup {
     }
 
     protected boolean centerCause(int x1, int x2, int y1, int y2, int r1, int r2){
-        double d = pow(x2 - x1, 2) + pow(y1 - y2, 2);
-
+        double d = pow(x2 - x1, 2) + pow(y2 - y1, 2);
         if (d <= pow(r1, 2)){
             return true;
         }

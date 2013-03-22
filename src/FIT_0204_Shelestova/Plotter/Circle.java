@@ -57,7 +57,11 @@ public class Circle {
 
     private void drawCenter(int[] circle, int r){ //TODO: change
         int d = getD();
-        circle[(r*d) + r] = GUIStandarts.drawColor;
+        for (int i = -3; i < 4; i++ ){
+            circle[((r+i)*d) + r] = GUIStandarts.drawColor;
+            circle[(r*d) + r + i] = GUIStandarts.drawColor;
+        }
+
     }
     private void plot8(int[] circle, int x, int y, int r){
         int d = 2*r + 1;

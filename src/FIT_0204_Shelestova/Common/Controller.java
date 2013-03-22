@@ -45,8 +45,5 @@ public interface Controller {
 
     public void moveFigure(int x, int y);
 
-    public boolean canChangeX2(int x2);
-    public boolean canChangeY2(int y2);
-    public boolean canChangeX1(int x1);
-    public boolean canChangeY1(int y1);
+
 }

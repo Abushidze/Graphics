@@ -30,7 +30,7 @@ public class ControlGroup extends MyPanel {
         label = new JLabel(name);
         createSpinner(init, min, max);
         createSlider(min, max, init);
-
+        this.currentValue = init;
         addWidgetsToPanel();
     }
 
@@ -96,9 +96,9 @@ public class ControlGroup extends MyPanel {
                     String input = textField.getText();
 
                     try{
-                        //     System.out.println(input);
+
                         Integer intInput = Integer.parseInt(input);
-                        //     System.out.println(input + " : " +intInput);
+
                         if(intInput > maxValue || intInput < minValue){
                             showWarning();
                             textField.setValue(slider.getValue());
@@ -172,6 +172,9 @@ public class ControlGroup extends MyPanel {
                 if(canChange(value)){
                     spinner.setValue(value);
                     changed();
+                }
+                else {
+                    slider.setValue(currentValue);
                 }
             }
         });
