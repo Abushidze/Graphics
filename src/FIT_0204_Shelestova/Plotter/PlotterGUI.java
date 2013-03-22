@@ -26,13 +26,13 @@ public class PlotterGUI extends CommonGUI{
 
         x1ControlGroup = new X1ControlGroup(this, "x1", -1000, 1000, 0);
         y1ControlGroup = new Y1ControlGroup(this, "y1", -1000, 1000, 0);
-        r1ControlGroup = new R1ControlGroup(this, "r1", -1000, 1000, 10);
+        r1ControlGroup = new R1ControlGroup(this, "r1", 0, 1000, 10);
 
         x2ControlGroup = new X2ControlGroup(this, "x2", -1000, 1000, 0);
         y2ControlGroup = new Y2ControlGroup(this, "y2", -1000, 1000, 0);
-        r2ControlGroup = new R2ControlGroup(this, "r2", -1000, 1000, 5);
+        r2ControlGroup = new R2ControlGroup(this, "r2", 0, 1000, 5);
 
-        nControlGroup = new ControlGroup(this, "n", 2, 10, 2);
+        nControlGroup = new ControlGroup(this, "n", 1, 10, 2);
 
     }
     protected void addWidgetsToControlPanel() {
