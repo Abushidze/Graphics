@@ -14,7 +14,7 @@ public class PlotterModel extends Model{
     private Integer r2 = 5;
 
     private Integer n = 2;
-
+    private Integer k = 100;
 
     public Integer getX1() {
         return x1;
@@ -73,10 +73,10 @@ public class PlotterModel extends Model{
     }
 
     public double funcF(int x, int y){
-        return pow(r1,2) -pow(x - x1,2) - pow(y - y1,2) ;
+        return (pow(r1,2) -pow(x - x1,2) - pow(y - y1,2)) /1000000.;
     }
     public double funcQ(int x, int y){
-        return  pow(r2,2) - pow(x - x2,2) - pow(y - y2,2) ;
+        return  (pow(r2,2) - pow((x - x2),2) - pow(y - y2,2))/1000000. ;
     }
     public double funcR(int x, int y){
         double  q = funcQ(x, y);

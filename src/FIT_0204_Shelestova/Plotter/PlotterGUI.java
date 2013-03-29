@@ -15,6 +15,7 @@ public class PlotterGUI extends CommonGUI{
     private ControlGroup r2ControlGroup;
 
     private ControlGroup nControlGroup;
+    private ControlGroup kControlGroup;
 
     PlotterGUI(Controller controller){
         super(controller);
@@ -33,6 +34,7 @@ public class PlotterGUI extends CommonGUI{
         r2ControlGroup = new R2ControlGroup(this, "r2", 0, 1000, 5);
 
         nControlGroup = new ControlGroup(this, "n", 2, 10, 2);
+        kControlGroup = new ControlGroup(this, "k", 1, 1000, 100);
 
     }
     protected void addWidgetsToControlPanel() {

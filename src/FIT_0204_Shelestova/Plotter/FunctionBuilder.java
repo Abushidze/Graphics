@@ -155,7 +155,8 @@ public class FunctionBuilder {
             points[7] = new Point(prePoint.x + 1, prePoint.y);
             for (int i = 0; i < 8; i++) {
                 if (!isDrawed(drawedPoints, points[i])) {
-                    if (abs(points[i].dF) < abs(nextPoint.dF)) {
+                    if (abs(points[i].dF) < abs(nextPoint.dF) &&
+                            scalar(prePoint, points[i]) >= 0) {
                         nextPoint = points[i];
                     }
                 } else if (drawedPoints.size() > 2 && (points[i].x == firstPoint.x && points[i].y == firstPoint.y)) {
@@ -178,5 +179,8 @@ public class FunctionBuilder {
             }
         }
         return false;
+    }
+    private int scalar(Point p1, Point p2){
+        return p1.x*p2.x + p1.y*p2.y;
     }
 }
