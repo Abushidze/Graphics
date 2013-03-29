@@ -73,10 +73,10 @@ public class PlotterModel extends Model{
     }
 
     public double funcF(int x, int y){
-        return pow(x - x1,2) + pow(y - y1,2) - pow(r1,2);
+        return pow(r1,2) -pow(x - x1,2) - pow(y - y1,2) ;
     }
     public double funcQ(int x, int y){
-        return pow(x - x2,2) + pow(y - y2,2) - pow(r2,2);
+        return  pow(r2,2) - pow(x - x2,2) - pow(y - y2,2) ;
     }
     public double funcR(int x, int y){
         double  q = funcQ(x, y);

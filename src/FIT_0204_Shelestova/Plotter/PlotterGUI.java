@@ -32,7 +32,7 @@ public class PlotterGUI extends CommonGUI{
         y2ControlGroup = new Y2ControlGroup(this, "y2", -1000, 1000, 0);
         r2ControlGroup = new R2ControlGroup(this, "r2", 0, 1000, 5);
 
-        nControlGroup = new ControlGroup(this, "n", 1, 10, 2);
+        nControlGroup = new ControlGroup(this, "n", 2, 10, 2);
 
     }
     protected void addWidgetsToControlPanel() {
