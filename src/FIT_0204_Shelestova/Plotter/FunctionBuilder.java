@@ -29,6 +29,7 @@ public class FunctionBuilder {
         private int y;
         public double dF;
         public int pw;
+
         public void setX(int x) {
             this.x = x;
             f();
@@ -41,7 +42,7 @@ public class FunctionBuilder {
 
         public void draw() {
             if (y > -yNull && y < yNull && x < xNull && x > -xNull) {
-                bits[(yNull -y) * pw + x + xNull] = GUIStandarts.figureColor;
+                bits[(yNull - y) * pw + x + xNull] = GUIStandarts.figureColor;
             }
         }
 
@@ -67,34 +68,12 @@ public class FunctionBuilder {
     }
 
     private void doIt() {
-        Point firstPoint = null;
-        if (model.getY1() > - yNull && model.getY1() < yNull){
-            firstPoint = xSearchFirstPoint(new Point(-xNull, model.getY1()));
-        }
-        else if (model.getX1() > -xNull && model.getX1() < xNull){
-            firstPoint = ySearchFirstPoint(new Point(model.getX1(), -yNull));
-        }
-        else if(model.getPanelWidth() > model.getPanelHeight()){
-            if (model.getY1() <= -yNull){
-                firstPoint = xSearchFirstPoint(new Point(-xNull, -yNull));
-            }
-            else{
-                firstPoint = xSearchFirstPoint(new Point(-xNull, yNull));
-            }
-        }
-        else if (model.getPanelHeight() > model.getPanelWidth()){
-            if (model.getX1() <= -xNull){
-                firstPoint = ySearchFirstPoint(new Point(-xNull, -yNull));
-            }
-            else{
-                firstPoint = ySearchFirstPoint(new Point(xNull, -yNull));
-            }
-        }
+        Point firstPoint = xBinarySearch(new Point(-1000, model.getY1()), new Point(model.getX1(), model.getY1())) ;
         drawByBresenchem(firstPoint);
     }
 
     private Point xSearchFirstPoint(Point startPoint) {
-        //Point startPoint = new Point(-xNull, model.getY1());
+
         Point currPoint = new Point(startPoint.x, startPoint.y);
 
         while (startPoint.dF * currPoint.dF > 0) {
@@ -111,6 +90,64 @@ public class FunctionBuilder {
         } else {
             return currPoint;
         }
+
+
+    }
+
+    private Point xBinarySearch(Point left, Point right) {
+        int y = left.y; // the same for right and left
+        Point mid;
+        while (true) {
+            if (abs(left.x - right.x) == 1) {
+                if (abs(left.dF) <= abs(right.dF)) {
+                    return left;
+                } else {
+                    return right;
+                }
+            }
+
+            mid = new Point((right.x + left.x) / 2, y);
+            if (mid.dF == 0 || mid.dF == left.dF || mid.dF == right.dF) return mid;
+
+            //System.out.println((mid.dF + " : " + left.dF + " :: " + right.dF));
+            //System.out.println("left.x : " + left.x + " right x : " + right.x + " x : " + mid.x);
+            if (mid.dF * left.dF < 0) {
+                right = mid;
+            }
+            if (mid.dF * right.dF < 0) {
+                left = mid;
+            }
+
+        }
+
+    }
+
+    private Point yBinarySearch(Point bottom, Point top) {
+        int x = bottom.x; // the same for right and left
+        Point mid;
+        while (true) {
+            if (abs(bottom.y - top.y) == 1) {
+                if (abs(bottom.dF) <= abs(top.dF)) {
+                    return bottom;
+                } else {
+                    return top;
+                }
+            }
+
+            mid = new Point(x,  (top.y + bottom.y) / 2);
+            if (mid.dF == 0 || mid.dF == bottom.dF || mid.dF == top.dF) return mid;
+
+            //System.out.println((mid.dF + " : " + left.dF + " :: " + right.dF));
+            //System.out.println("left.x : " + left.x + " right x : " + right.x + " x : " + mid.x);
+            if (mid.dF * bottom.dF < 0) {
+                bottom = mid;
+            }
+            if (mid.dF * top.dF < 0) {
+                top = mid;
+            }
+
+        }
+
     }
     private Point ySearchFirstPoint(Point startPoint) {
         Point currPoint = new Point(startPoint.x, startPoint.y);
@@ -122,13 +159,14 @@ public class FunctionBuilder {
                 break;
             }
         }
-        Point preCurrPoint = new Point(currPoint.x , currPoint.y - 1);
+        Point preCurrPoint = new Point(currPoint.x, currPoint.y - 1);
 
         if (abs(preCurrPoint.dF) < abs(currPoint.dF)) {
             return preCurrPoint;
         } else {
             return currPoint;
         }
+
     }
 
     private void drawByBresenchem(Point startPoint) {
@@ -165,22 +203,24 @@ public class FunctionBuilder {
                     }
                 }
             }
-            if (nextPoint.equals(bigPoint)) break; //TODO: разобраться
+            if (nextPoint.equals(bigPoint)) break;
             nextPoint.draw();
             drawedPoints.add(nextPoint);
             prePoint = nextPoint;
         }
         while (!(nextPoint.x == firstPoint.x && nextPoint.y == firstPoint.y));
     }
-    private boolean isDrawed(List<Point> points, Point p){
-        for (Point point : points){
-            if (p.x == point.x && p.y == point.y){
+
+    private boolean isDrawed(List<Point> points, Point p) {
+        for (Point point : points) {
+            if (p.x == point.x && p.y == point.y) {
                 return true;
             }
         }
         return false;
     }
-    private int scalar(Point p1, Point p2){
-        return p1.x*p2.x + p1.y*p2.y;
+
+    private int scalar(Point p1, Point p2) {
+        return p1.x * p2.x + p1.y * p2.y;
     }
 }

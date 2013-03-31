@@ -38,10 +38,13 @@ public class Canvas extends MyPanel{
 
         addMouseMotionListener(new MouseAdapter() {
             public void mouseDragged(MouseEvent e) {
+
                 event = e;
                 changed();
             }
         });
+
+
 
     }
 

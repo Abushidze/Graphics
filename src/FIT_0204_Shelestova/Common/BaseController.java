@@ -140,4 +140,8 @@ public abstract class BaseController implements Controller {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
+    public void setK(Integer k){
+
+    }
+
 }

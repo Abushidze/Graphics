@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
 public class PlotterController extends BaseController{
@@ -79,6 +78,9 @@ public class PlotterController extends BaseController{
 
     public void setN(Integer n) {
         model.setN(n);
+    }
+    public void setK(Integer k){
+        model.setK(k);
     }
 
     public int getXnull(){
@@ -159,7 +161,7 @@ public class PlotterController extends BaseController{
 
     @Override
     public void moveFigure(int x, int y) {
-        x -= getXnull();
+        /*x -= getXnull();
         y = getYnull() - y;
         int dx1 = getX1() - x;
         int dx2 = getX2() - x;
@@ -177,7 +179,7 @@ public class PlotterController extends BaseController{
             setX2(x);
             setY2(y);
             }
-        }
+        }*/
     }
     private boolean canSetXY(int x1, int y1, int x2, int y2){
         double d = pow(x2 - x1, 2) + pow(y2 - y1, 2);

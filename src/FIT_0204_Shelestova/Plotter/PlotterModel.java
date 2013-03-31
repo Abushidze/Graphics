@@ -79,7 +79,7 @@ public class PlotterModel extends Model{
         return  (pow(r2,2) - pow((x - x2),2) - pow(y - y2,2))/1000000. ;
     }
     public double funcR(int x, int y){
-        double  q = funcQ(x, y);
+        double  q = k * funcQ(x, y);
         if (q >= 0){
             return pow(q, n);
         }
@@ -89,5 +89,9 @@ public class PlotterModel extends Model{
     }
     public double func(int x, int y){
         return funcF(x, y) + funcR(x, y);
+    }
+
+    public void setK(Integer k) {
+        this.k = k;
     }
 }

@@ -65,6 +65,9 @@ public class PlotterGUI extends CommonGUI{
 
         gbc.gridx = 6;
         controlPanel.add(nControlGroup, gbc);
+
+        gbc.gridx = 7;
+        controlPanel.add(kControlGroup, gbc);
     }
     protected void setHeights() {
         super.setHeights();
@@ -101,6 +104,9 @@ public class PlotterGUI extends CommonGUI{
         }
         if (widget == nControlGroup){
             controller.setN(nControlGroup.getCurrentValue());
+        }
+        if (widget == kControlGroup){
+            controller.setK(kControlGroup.getCurrentValue());
         }
         if (widget == canvas){
             controller.moveFigure(canvas.getCurrentX(), canvas.getCurrentY());

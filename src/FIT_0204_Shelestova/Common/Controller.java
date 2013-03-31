@@ -42,6 +42,7 @@ public interface Controller {
     public Integer getN();
 
     public void setN(Integer n);
+    public void setK(Integer k);
 
     public void moveFigure(int x, int y);
 
