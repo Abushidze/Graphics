@@ -15,6 +15,8 @@ public interface Controller {
     public void loadPropertiesFromFile(File fileName) throws IOException;
     public void storePropertiesToFile(File fileName) throws IOException;
     public void fillMemory(int[] memory);
+    public Integer getXnull();
+    public Integer getYnull();
     public Integer getX1();
 
     public void setX1(Integer x1);
@@ -45,6 +47,6 @@ public interface Controller {
     public void setK(Integer k);
 
     public void moveFigure(int x, int y);
-
+    public boolean canSetXY(int x1, int y1, int x2, int y2, int r1, int r2);
 
 }

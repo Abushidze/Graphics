@@ -180,7 +180,7 @@ public class FunctionBuilder {
         Point bigPoint = new Point(model.getX1(), model.getY1());
         bigPoint.dF = Double.MAX_VALUE;// здесь гарантированно большое абсолютное значение
         Point nextPoint = bigPoint;
-
+        Point preprePoint = null;
         do {
             nextPoint = bigPoint;
             points[0] = new Point(prePoint.x - 1, prePoint.y - 1);
@@ -192,20 +192,30 @@ public class FunctionBuilder {
             points[6] = new Point(prePoint.x + 1, prePoint.y - 1);
             points[7] = new Point(prePoint.x + 1, prePoint.y);
             for (int i = 0; i < 8; i++) {
-                if (!isDrawed(drawedPoints, points[i])) {
+                /*if (!isDrawed(drawedPoints, points[i])) {
                     if (abs(points[i].dF) < abs(nextPoint.dF) &&
-                            scalar(prePoint, points[i]) >= 0) {
+                            scalar(preprePoint, prePoint, points[i]) >= 0) {
                         nextPoint = points[i];
                     }
                 } else if (drawedPoints.size() > 2 && (points[i].x == firstPoint.x && points[i].y == firstPoint.y)) {
                     if (abs(points[i].dF) < abs(nextPoint.dF)) {
                         nextPoint = points[i];
                     }
+                }*/
+                if (abs(points[i].dF) < abs(nextPoint.dF)){
+                    if (preprePoint == null){
+                        nextPoint = points[i];
+                    }
+                    else if (scalar(preprePoint, prePoint, points[i]) >= 0){
+                        nextPoint = points[i];
+                    }
                 }
+
             }
             if (nextPoint.equals(bigPoint)) break;
             nextPoint.draw();
-            drawedPoints.add(nextPoint);
+            //drawedPoints.add(nextPoint);
+            preprePoint = new Point(prePoint.x, prePoint.y);
             prePoint = nextPoint;
         }
         while (!(nextPoint.x == firstPoint.x && nextPoint.y == firstPoint.y));
@@ -220,7 +230,7 @@ public class FunctionBuilder {
         return false;
     }
 
-    private int scalar(Point p1, Point p2) {
-        return p1.x * p2.x + p1.y * p2.y;
+    private int scalar(Point p0, Point p1, Point p2) {
+        return (p1.x - p0.x) * (p2.x - p1.x) + (p1.y - p0.y) * (p2.y - p1.y);
     }
 }

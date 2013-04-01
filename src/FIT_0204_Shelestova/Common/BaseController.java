@@ -143,5 +143,13 @@ public abstract class BaseController implements Controller {
     public void setK(Integer k){
 
     }
-
+    public Integer getXnull(){
+        return model.getXnull();
+    }
+    public Integer getYnull(){
+        return model.getYnull();
+    }
+    public boolean canSetXY(int x1, int y1, int x2, int y2, int r1, int r2){
+        return true;
+    }
 }

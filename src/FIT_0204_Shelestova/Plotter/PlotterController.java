@@ -27,6 +27,7 @@ public class PlotterController extends BaseController{
     }
 
     public void setX1(Integer x1) {
+
         model.setX1(x1);
     }
 
@@ -83,12 +84,7 @@ public class PlotterController extends BaseController{
         model.setK(k);
     }
 
-    public int getXnull(){
-        return model.getXnull();
-    }
-    public int getYnull(){
-        return model.getYnull();
-    }
+
     public void fillMemory(int[] bits ){
         prepareCanvas(bits);
         drawAxis(bits);
@@ -190,7 +186,7 @@ public class PlotterController extends BaseController{
             return false;
         }
     }
-    private boolean canSetXY(int x1, int y1, int x2, int y2, int r1, int r2){
+    public boolean canSetXY(int x1, int y1, int x2, int y2, int r1, int r2){
         double d = pow(x2 - x1, 2) + pow(y2 - y1, 2);
         if (d <= pow(r1, 2)){
             return true;

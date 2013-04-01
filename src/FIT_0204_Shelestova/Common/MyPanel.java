@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MyPanel extends JPanel {
-    protected CommonGUI gui;
+    protected  CommonGUI gui;
     protected MyPanel(CommonGUI gui){
         super(new GridBagLayout());
         this.gui = gui;
